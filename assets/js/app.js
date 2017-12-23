@@ -8,7 +8,7 @@ $("#start").one( "click", function(){
 run();
 $("#start").hide();
 renderQuestion();
-//renderAnswer()
+renderAnswer();
 $("#answers").show();
 
 });
@@ -36,6 +36,7 @@ $("#start").one( "click", function(){
         stop();
         //  Alert the user that time is up.
       	renderQuestion();
+      	renderAnswer();
       }
     }
    //  The stop function
@@ -52,11 +53,11 @@ $("#start").one( "click", function(){
 
     }
          var questions = {
-        q1: ["what is the name of our instructer?", "t"],
-        q2: ["There are 365 days in a year.", "t"],
-        q3: ["There are 42 ounces in a pound.", "f"],
-        q4: ["The Declaration of Independence was created in 1745.", "f"],
-        q5: ["Bananas are vegetables.", "f"]
+        q1: ["what is the name of our instructer?","1"],
+        q2: ["what is your favorite time of the year.", "4"],
+        q3: ["who is the best rapper alive.", "3"],
+        q4: ["when will you be finished with this course.", "2"],
+       
       };
 
          var questionIndex = 0;
@@ -81,33 +82,59 @@ $("#start").one( "click", function(){
         a2: ["Adam", "t"],
         a3: ["sara", "f"],
         a4: ["lewis", "f"],
+        a5: ["christmas", "f"],
+        a6: ["July 4th", "f"],
+        a7: ["new year", "f"],
+        a8: ["birthday", "f"],
+        a9: ["Jay-z", "f"],
+        a10: ["Migos", "f"],
+        a11: ["Lucci", "f"],
+        a12: ["Lil baby", "f"],
+        a13: ["May", "f"],
+        a14: ["June", "f"],
+        a15: ["January", "f"],
+        a16: ["December", "f"],
+        
+        
        
-      };
-      var answerindex = 0;
-       var answerArray = [answersa.a1, answersa.a2, answersa.a3, answersa.a4];
+      }
+    var i = 0;
+       var answerArray = [answersa.a1, answersa.a2, answersa.a3, answersa.a4, 
+       answersa.a5, answersa.a6, answersa.a7, answersa.a8, 
+       answersa.a9, answersa.a10, answersa.a11, answersa.a12, 
+       answersa.a13, answersa.a14, answersa.a15, answersa.a16];
 
 
       
          
 
           function renderAnswer() {
+   
         // If there are still more questions, render the next one.
-        if (answerindex  <= (answerArray.length - 1)) {
-          $(".c").html("<button>" +answerArray[answerindex ][0]+ "</button>");
-          $(".c").html("<button>" +answerArray[answerindex ][1]+ "</button>");
-          $(".c").html("<button>" +answerArray[answerindex ][2]+ "</button>");
-          $(".c").html("<button>" +answerArray[answerindex ][3]+ "</button>");
-          answerindex++
+        if (i  <= (answerArray.length - 1)) {
+      
+
+           
+       $(".a").text(answerArray[i][0]);
+       i++
+       $(".b").text(answerArray[i][0]);
+       i++
+       $(".c").text(answerArray[i][0]);
+       i++
+       $(".d").text(answerArray[i][0]);
+  
+          i++
+          //$( ".c,.a,.b,.d" ).empty();
           
  }
         // If there aren't, render the end game screen.
-        else {
-          $("#question").html ("Game Over!");
-          $("#score").innerHTML = "Final Score: " + score + " out of " + questionsArray.length;
-        }
+        //else {
+          //$("#question").html ("Game Over!");
+          //$("#score").innerHTML = "Final Score: " + score + " out of " + questionsArray.length;
+        
       }
        // Add an on click listener to all elements that have the class "operator"
-      $(".c").on("click", function() {
+      $(".c,.a,.b,.d").on("click", function() {
         // Check if a first number has already been selected
         // Or we've already run a calculation, if so we just exit.
         //if (!firstNumber || isCalculated) return;
@@ -119,13 +146,15 @@ $("#start").one( "click", function(){
 
         // Set the HTML of the #operator to the text of what was clicked
         //alert(operator);
+        //alert(questionsArray[questionIndex-1][1]);
        
 
           // If they guess the correct answer, increase and update score, alert them they got it right.
-          if (operator === questionsArray[questionIndex][1]) {
+          if (operator == questionsArray[questionIndex-1][1]) {
             $("#question").html("<h2>Correct </h2>");
             $("#show-number").hide();
              clearInterval(intervalId);
+
            //score++;
             //updateScore();
           }
@@ -137,10 +166,12 @@ $("#start").one( "click", function(){
           }
 
           // Increment the questionIndex variable and call the renderQuestion function.
-          questionIndex++;
+        
          
           setTimeout(stop, 1000 * 4);
           setTimeout(renderQuestion, 1000 * 5);
+          setTimeout(renderAnswer, 1000 * 5);
+
 
 
 

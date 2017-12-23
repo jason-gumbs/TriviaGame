@@ -76,7 +76,7 @@ h2{
   	font-family: 'Luckiest Guy', cursive;
   	z-index: 1;
 }
-.c{
+.c,.a,.b,.d{
 	padding: 20px;
 	font-family: 'Luckiest Guy', cursive;
 	  height: 60px;
