@@ -56,24 +56,24 @@ $("#start").one( "click", function(){
         q1: ["what is the name of our instructer?","1"],
         q2: ["what is your favorite time of the year.", "4"],
         q3: ["who is the best rapper alive.", "3"],
-        q4: ["when will you be finished with this course.", "2"],
+        q4: ["when will you be finished with this course.", "1"],
        
       };
 
          var questionIndex = 0;
-         var questionsArray = [questions.q1, questions.q2, questions.q3, questions.q4, questions.q5];
+         var questionsArray = [questions.q1, questions.q2, questions.q3, questions.q4];
 
             function renderQuestion() {
         // If there are still more questions, render the next one.
         if (questionIndex <= (questionsArray.length - 1)) {
           $("#question").html("<h3>" +questionsArray[questionIndex][0]+ "</h3>");
           questionIndex++
-          
- }
+          }
         // If there aren't, render the end game screen.
         else {
           $("#question").html ("Game Over!");
-          $("#score").innerHTML = "Final Score: " + score + " out of " + questionsArray.length;
+          clearInterval(intervalId);
+          
         }
       }
 
@@ -128,11 +128,12 @@ $("#start").one( "click", function(){
           
  }
         // If there aren't, render the end game screen.
-        //else {
+        else {
           //$("#question").html ("Game Over!");
           //$("#score").innerHTML = "Final Score: " + score + " out of " + questionsArray.length;
+          $("#answers").hide();
         
-      }
+      }}
        // Add an on click listener to all elements that have the class "operator"
       $(".c,.a,.b,.d").on("click", function() {
         // Check if a first number has already been selected
@@ -153,6 +154,7 @@ $("#start").one( "click", function(){
           if (operator == questionsArray[questionIndex-1][1]) {
             $("#question").html("<h2>Correct </h2>");
             $("#show-number").hide();
+
              clearInterval(intervalId);
 
            //score++;
